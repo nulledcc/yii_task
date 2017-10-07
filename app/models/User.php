@@ -118,7 +118,24 @@ class User extends ActiveRecord implements IdentityInterface
 	{
 		return static::findOne(['username' => $username]);
 	}
-
+	/**
+	 * Finds user by email
+	 *
+	 * @param string $email
+	 *
+	 * @return static|null
+	 */
+	public static function findByEmail($email)
+	{
+		return static::findOne(['email' => $email]);
+	}
+	/**
+	 * Hash password
+	 *
+	 * @param $password
+	 *
+	 * @return string
+	 */
 	public static function hash_pass($password)
 	{
 		return sha1(sha1($password . Yii::$app->params['salt']) . Yii::$app->params['salt']);
